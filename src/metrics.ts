@@ -7,7 +7,7 @@ const register = new client.Registry();
 //register.registerMetric(a)
 
 client.collectDefaultMetrics({
-  prefix: "relay_",
+  prefix: "NFTbridge_",
   register,
   gcDurationBuckets: [0.1, 1, 5],
 });

@@ -44,7 +44,7 @@ export class HttpService {
     this.metrics = {
       hello: new client.Counter({
         registers: [register],
-        name: "relay_hello_counter",
+        name: "NFTbridge_hello_counter",
         help: "shows how much the /hello has been called",
       }),
     };
