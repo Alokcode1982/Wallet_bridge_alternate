@@ -5,6 +5,8 @@ import ws from "fastify-websocket";
 import pino, { Logger } from "pino";
 import { getDefaultLoggerOptions, generateChildLogger } from "@pedrouid/pino-utils";
 import client from "prom-client";
+import formbody from "fastify-formbody";
+import multipart from "fastify-multipart";
 
 import config from "./config";
 import register from "./metrics";
@@ -76,6 +78,9 @@ export class HttpService {
   private registerApi() {
     this.app.register(helmet);
     this.app.register(ws);
+    //added to support different request types
+    this.app.register(multipart);
+    this.app.register(formbody)
 
     this.app.get("/", { websocket: true }, connection => {
       connection.on("error", (e: Error) => {
