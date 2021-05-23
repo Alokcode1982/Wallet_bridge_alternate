@@ -1,2 +1,3 @@
-# Wallet_bridge_alternate
-Wallet Connect Bridge
+# NFT Marketplace bridge
+
+Bridge Server for WalletConnect Protocol
