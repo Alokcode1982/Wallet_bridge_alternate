@@ -31,7 +31,7 @@ describe("HTTP", () => {
   it("GET hello", async () => {
     const response = await api.get("/hello");
     expect(response.status).to.equal(200);
-    expect(response.data.startsWith(`Hello World, this is Relay Server`)).to.be.true;
+    expect(response.data.startsWith(`NFT Bridge, this is Bridge Server`)).to.be.true;
   });
   it("POST subscribe", async () => {
     const payload = { topic: TEST_TOPIC, webhook: "https://example.com" };
