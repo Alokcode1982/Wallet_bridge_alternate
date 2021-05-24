@@ -84,18 +84,7 @@ export class HttpService {
     //added to support different request types
     this.app.register(multipart);
     this.app.register(formbody)
-/*
-    this.app.all('*', (req, res) => {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Credentials', 'true');
-      res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-      res.header(
-        'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-      );
 
-    });
-  */  
 
     this.app.get("/", { websocket: true }, connection => {
       connection.on("error", (e: Error) => {
