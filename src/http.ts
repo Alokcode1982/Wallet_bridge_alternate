@@ -84,7 +84,7 @@ export class HttpService {
     //added to support different request types
     this.app.register(multipart);
     this.app.register(formbody)
-
+/*
     this.app.all('*', (req, res) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Credentials', 'true');
@@ -95,7 +95,7 @@ export class HttpService {
       );
 
     });
-    
+  */  
 
     this.app.get("/", { websocket: true }, connection => {
       connection.on("error", (e: Error) => {
@@ -213,11 +213,12 @@ export class HttpService {
         assertType(req.body, "topic");
         assertType(req.body, "webhook");
 
+
         this.redis.setNotification({
           topic: req.body.topic,
           webhook: req.body.webhook,
         });
-
+        res.header('Access-Control-Allow-Origin', '*');
         res.status(200).send({ success: true });
       } catch (e) {
         res.status(400).send({ message: `Error: ${e.message}` });
