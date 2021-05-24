@@ -8,6 +8,8 @@ import client from "prom-client";
 import formbody from "fastify-formbody";
 import multipart from "fastify-multipart";
 
+import cors from "fastify-cors";
+
 import config from "./config";
 import register from "./metrics";
 import { assertType } from "./utils";
@@ -78,9 +80,22 @@ export class HttpService {
   private registerApi() {
     this.app.register(helmet);
     this.app.register(ws);
+    this.app.register(cors);
     //added to support different request types
     this.app.register(multipart);
     this.app.register(formbody)
+
+    this.app.all('*', (req, res) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Credentials', 'true');
+      res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+      res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+      );
+
+    });
+    
 
     this.app.get("/", { websocket: true }, connection => {
       connection.on("error", (e: Error) => {
